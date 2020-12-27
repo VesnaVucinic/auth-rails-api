@@ -3,10 +3,16 @@ class SecretsController < ApplicationController
 
   # GET /secrets
   def index
-    @secrets = Secret.all
-
-    render json: @secrets
-  end
+    # byebug
+    if logged_in?
+      @secrets = current_user.secrets
+      render json: @secrets, status: :ok
+    else
+      render json: {
+        error: "not logged in", status: :unauthorized
+      }
+    end
+ end!
 
   # GET /secrets/1
   def show
