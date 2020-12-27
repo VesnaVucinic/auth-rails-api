@@ -13,7 +13,8 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  # POST /users
+  # POST /usersgit status
+  
   def create
     @user = User.new(user_params)
 
